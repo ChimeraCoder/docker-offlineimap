@@ -1,0 +1,24 @@
+[general]
+ui = ttyui
+accounts = GMail
+
+[Account GMail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+#Controls how many accounts may be synchronized simultaneously
+maxsyncaccounts = 3 
+maxconnections = 3 
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = /home/offlineimap/mail/GMail
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = YOUR_EMAIL_ADDRESS@gmail.com
+remotepass = YOUR_PASSWORD_HERE
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+realdelete = no
+# Instead of closing the connection once a sync is complete, offlineimap will# send empty data to the server to hold the connection open. A value of 60
+# attempts to hold the connection for a minute between syncs (both quick and # autorefresh)
+keepalive = 60 

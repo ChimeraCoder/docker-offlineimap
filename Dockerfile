@@ -10,14 +10,15 @@ RUN apt-get install -y -o Acquire::ForceIPv4=true offlineimap ca-certificates
 
 RUN useradd -m offlineimap
 ADD offlineimaprc /home/offlineimap/.offlineimaprc
+ADD run.sh /home/offlineimap/run.sh
+RUN chmod 755 /home/offlineimap/run.sh
 
 RUN chown offlineimap:offlineimap /home/offlineimap/.offlineimaprc
 
-RUN mkdir /home/offlineimap/mail
-RUN chown -R offlineimap:offlineimap /home/offlineimap/mail
+RUN chown -R offlineimap:users /home/offlineimap/
 
 USER offlineimap
 
 
 # Use exec mode so offlineimap can receive SIGUSR2
-ENTRYPOINT ["/usr/bin/offlineimap", "-c", "/home/offlineimap/.offlineimaprc"]
+ENTRYPOINT ["/home/offlineimap/run.sh"]
