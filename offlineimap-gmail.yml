@@ -12,6 +12,9 @@
   - name: Write password to systemd config
     lineinfile: dest="/etc/sysconfig/offlineimap-gmail" state=present create=yes line="PASSWORD={{ lookup('env', 'PASSWORD') }}"  
 
+
+  # Assumes RHEL-based server (Red Hat/Fedora/CentOS)
+  # Change to desired distro package manager
   - name: Install docker
     yum: name="docker-io" state="present"
 
